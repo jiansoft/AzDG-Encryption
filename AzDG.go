@@ -6,7 +6,6 @@
  * To change this template use File | Settings | File Templates.
  */
 package eddie
-
 import (
 	"fmt"
 	"crypto/md5"
