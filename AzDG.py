@@ -45,8 +45,6 @@ class AzDG:
 		while i < textLength:	
 			decodeText.append(ord(decodeSourceText[i]) ^ ord(decodeSourceText[i+1]))	
 			i += 2
-		return decodeText.decode(self.charset) 
-
-    
+		return decodeText.decode(self.charset)    
 
 
