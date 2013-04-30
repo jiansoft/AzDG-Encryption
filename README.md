@@ -1,4 +1,4 @@
 AzDG-Encryption
 ===============
 
-Implement AzDG encryption. Include c#、Python、Object-C、Java、PHP.
+Implement AzDG encryption. Include C#、Python、Object-C、Java、PHP.
