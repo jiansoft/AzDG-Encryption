@@ -25,29 +25,27 @@ class AzDG {
   
   String Decrypt(String sourceText)
   {
-    var decodeSourceText = _cipherEncode(CryptoUtils.base64StringToBytes(sourceText));
-    var loopCount = decodeSourceText.length;
-    var size = (loopCount / 2);
-    var outData = new List<int>(size.toInt());
-    for (int i = 0, j = 0; i < loopCount; ++i, ++j) {
-      outData[j]  = (decodeSourceText[i] ^ decodeSourceText[++i]);
+    var decodeSourceText = _cipherEncode(CryptoUtils.base64StringToBytes(sourceText));   
+    var size = (decodeSourceText.length ~/ 2).toInt();
+    var outData = new List<int>(size);
+    for (int j = 0; j < size; ++j) {     
+      outData[j] = (decodeSourceText[(j*2)] ^ decodeSourceText[(j*2)+1]);
     }
     return decodeUtf8(outData);
   }
   
-  String Crypt(String msg)
+  String Crypt(String sourceText)
   {
     var now = new DateTime.now();
     var md5 = new MD5();   
     md5.add(now.toString().codeUnits);
     var noise = CryptoUtils.bytesToHex(md5.close()).codeUnits;
-    var inputData = encodeUtf8(msg);
+    var inputData = encodeUtf8(sourceText);
     var loopCount = inputData.length;
     var outData = new List<int>(loopCount*2);
-    for (var i = 0, j = 0; i < loopCount ; i++,j++) {
-        outData[j] = noise[i%32];
-        j++;
-        outData[j] = inputData[i] ^ noise[i%32];
+    for (var j = 0; j < loopCount ; j++) {
+        outData[(j*2)] = noise[j%32];      
+        outData[(j*2)+1] = inputData[j] ^ noise[j%32];
     }
     return CryptoUtils.bytesToBase64(_cipherEncode(outData));
   }
