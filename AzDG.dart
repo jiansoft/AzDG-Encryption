@@ -41,9 +41,8 @@ class AzDG {
     md5.add(now.toString().codeUnits);
     var noise = CryptoUtils.bytesToHex(md5.close()).codeUnits;
     var inputData = encodeUtf8(sourceText);
-    var loopCount = inputData.length;
-    var outData = new List<int>(loopCount*2);
-    for (var j = 0; j < loopCount ; j++) {
+    var outData = new List<int>(inputData.length*2);
+    for (var j = 0; j < inputData.length ; j++) {
         outData[(j*2)] = noise[j%32];      
         outData[(j*2)+1] = inputData[j] ^ noise[j%32];
     }
