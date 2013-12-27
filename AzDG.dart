@@ -15,7 +15,6 @@ class AzDG {
     var md5 = new MD5(); 
     md5.add(this._cipher.codeUnits);
     var cipherHash = CryptoUtils.bytesToHex(md5.close()).codeUnits; 
-    //var inputData = sourceText;
     var outData = new List<int>(inputData.length); 
     var loopCount = inputData.length;
     for (var i = 0; i < loopCount; i++) {
