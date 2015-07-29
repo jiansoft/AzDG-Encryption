@@ -5,7 +5,7 @@ require 'base64'
 
 class AzDG
     attr_accessor :cipher
-    def initialize(cipher = "2407Tw0kooco0wT7042")
+    def initialize(cipher = "Private key")
         @cipherHash = Digest::MD5.hexdigest(cipher)
     end
 
